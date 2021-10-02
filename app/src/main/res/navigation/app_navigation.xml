@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/itemHome">
+
+    <fragment
+        android:id="@+id/itemHome"
+        android:name="com.example.a160418047_uts.view.Recipes.RecipesListFragment"
+        android:label="HOME"
+        tools:layout="@layout/fragment_recipes_list">
+        <action
+            android:id="@+id/action_recipesListFragment_to_recipesAddFragment"
+            app:destination="@id/recipesAddFragment" />
+        <action
+            android:id="@+id/actionResepDetail"
+            app:destination="@id/recipesDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemMy"
+        android:name="com.example.a160418047_uts.view.Recipes.MyRecipesFragment"
+        android:label="MY RECIPES"
+        tools:layout="@layout/fragment_my_recipes">
+        <action
+            android:id="@+id/action_myRecipesFragment_to_recipesDetailFragment"
+            app:destination="@id/recipesDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profilDetailFragment"
+        android:name="com.example.a160418047_uts.view.Profil.ProfilDetailFragment"
+        android:label="detail profil"
+        tools:layout="@layout/fragment_profil_detail">
+        <argument
+            android:name="uname"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipesAddFragment"
+        android:name="com.example.a160418047_uts.view.Recipes.RecipesAddFragment"
+        android:label="tambah resep"
+        tools:layout="@layout/fragment_recipes_add" />
+    <fragment
+        android:id="@+id/itemProfil"
+        android:name="com.example.a160418047_uts.view.Profil.ProfilFragment"
+        android:label="Profil"
+        tools:layout="@layout/fragment_profil">
+        <action
+            android:id="@+id/action_profilFragment_to_profilDetailFragment"
+            app:destination="@id/profilDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recipesDetailFragment"
+        android:name="com.example.a160418047_uts.view.Recipes.RecipesDetailFragment"
+        android:label="detail resep"
+        tools:layout="@layout/fragment_recipes_detail">
+        <argument
+            android:name="nama"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="bahan"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="cara"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="imgurl"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemReward"
+        android:name="com.example.a160418047_uts.view.Reward.RewardFragment"
+        android:label="Reward"
+        tools:layout="@layout/fragment_reward">
+        <action
+            android:id="@+id/action_rewardFragment_to_rewardDetailFragment"
+            app:destination="@id/rewardDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardDetailFragment"
+        android:name="com.example.a160418047_uts.view.Reward.RewardDetailFragment"
+        android:label="Reward Info"
+        tools:layout="@layout/fragment_reward_detail" />
+</navigation>
