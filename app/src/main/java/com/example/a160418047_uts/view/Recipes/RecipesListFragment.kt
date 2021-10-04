@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a160418047_uts.R
 import com.example.a160418047_uts.viewmodel.listRecipeViewModel
@@ -39,6 +40,10 @@ class RecipesListFragment : Fragment() {
         recViewResep.layoutManager = LinearLayoutManager(context)
         recViewResep.adapter = recipelistAdapter
         observeViewModel()
+        fabAddRecipes.setOnClickListener {
+            val action= RecipesListFragmentDirections.actionRecipesListFragmentToRecipesAddFragment();
+            Navigation.findNavController(it).navigate(action)
+        }
 
 //        val pref=activity?.getSharedPreferences("user", 0)?:return
 //        val uname=pref.getString("user_uname","Guest")

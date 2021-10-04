@@ -49,6 +49,10 @@
         <action
             android:id="@+id/action_profilFragment_to_profilDetailFragment"
             app:destination="@id/profilDetailFragment" />
+        <action
+            android:id="@+id/action_itemProfil_to_login"
+            app:destination="@id/login"
+            app:popUpTo="@id/login" />
     </fragment>
     <fragment
         android:id="@+id/recipesDetailFragment"
@@ -86,4 +90,14 @@
         android:name="com.example.a160418047_uts.view.Reward.RewardDetailFragment"
         android:label="Reward Info"
         tools:layout="@layout/fragment_reward_detail" />
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.a160418047_uts.view.auth.Login"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_itemHome"
+            app:destination="@id/itemHome"
+            app:popUpTo="@id/itemHome" />
+    </fragment>
 </navigation>

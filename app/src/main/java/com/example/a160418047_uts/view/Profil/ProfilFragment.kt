@@ -46,12 +46,12 @@ class ProfilFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val pref=activity?.getSharedPreferences("user",Context.MODE_PRIVATE)?:return
-        val uname=pref.getString("user_uname","Guest")?:"Guest"
+//        val pref=activity?.getSharedPreferences("user",Context.MODE_PRIVATE)?:return
+//        val uname=pref.getString("user_uname","Guest")?:"Guest"
 //           if(uname!="Guest") {
-               Toast.makeText(context, uname, Toast.LENGTH_SHORT).show()
+//               Toast.makeText(context, uname, Toast.LENGTH_SHORT).show()
                viewModel = ViewModelProvider(this).get(profilViewModel::class.java)
-               viewModel.fetch(uname!!);
+               viewModel.fetch("dragon21");
                observeViewModel()
 //           }else{
 //               txtNamaProf.setText("Guest")
@@ -61,13 +61,14 @@ class ProfilFragment : Fragment() {
 //               loadImgProf.visibility=View.GONE
 //           }
         btnDetailProf.setOnClickListener {
-            val action= ProfilFragmentDirections.actionProfilFragmentToProfilDetailFragment(uname)
+            val action= ProfilFragmentDirections.actionProfilFragmentToProfilDetailFragment("dragon21")
             Navigation.findNavController(it).navigate(action)
         }
-//        btnLogout.setOnClickListener {
-//            val action= ProfilFragmentDirections.actionItemProfilToLandingFragment()
-//            Navigation.findNavController(it).navigate(action)
-//        }
+        btnLogout.setOnClickListener {
+            val action= ProfilFragmentDirections.actionItemProfilToLogin()
+            Navigation.findNavController(it).navigate(action)
+
+        }
 
     }
     fun observeViewModel() {

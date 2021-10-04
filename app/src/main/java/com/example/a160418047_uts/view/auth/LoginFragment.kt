@@ -38,8 +38,8 @@ class Login : Fragment() {
 
 
 
-               // var act=LoginDirections.actionLoginToRecipesListFragment()
-              //  Navigation.findNavController(it).navigate(act)
+                var act=LoginDirections.actionLoginToItemHome()
+                Navigation.findNavController(it).navigate(act)
             }else{
             }
 
