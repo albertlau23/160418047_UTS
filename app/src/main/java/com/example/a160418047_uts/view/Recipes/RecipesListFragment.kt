@@ -7,30 +7,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a160418047_uts.R
+import com.example.a160418047_uts.databinding.FragmentRecipesDetailBinding
+import com.example.a160418047_uts.databinding.FragmentRecipesListBinding
+import com.example.a160418047_uts.model.FABTambahClickListener
 import com.example.a160418047_uts.viewmodel.listRecipeViewModel
 import kotlinx.android.synthetic.main.fragment_recipes_list.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-class RecipesListFragment : Fragment() {
+class RecipesListFragment : Fragment(),FABTambahClickListener {
     // TODO: Rename and change types of parameters
 
     private lateinit var viewModel:listRecipeViewModel
     private val recipelistAdapter = RecipesListAdapter(arrayListOf())
+    lateinit var  view:FragmentRecipesListBinding
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recipes_list, container, false)
+        view= DataBindingUtil.inflate<FragmentRecipesListBinding>(inflater,R.layout.fragment_recipes_list, container, false)
+        return view.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,38 +45,44 @@ class RecipesListFragment : Fragment() {
         recViewResep.layoutManager = LinearLayoutManager(context)
         recViewResep.adapter = recipelistAdapter
         observeViewModel()
-        fabAddRecipes.setOnClickListener {
-            val action= RecipesListFragmentDirections.actionRecipesListFragmentToRecipesAddFragment();
-            Navigation.findNavController(it).navigate(action)
-        }
 
-//        val pref=activity?.getSharedPreferences("user", 0)?:return
-//        val uname=pref.getString("user_uname","Guest")
-//        Toast.makeText(context, uname, Toast.LENGTH_SHORT).show()
     }
     fun observeViewModel() {
+
         viewModel.recipeLd.observe(viewLifecycleOwner, Observer {
             recipelistAdapter.updateRecipes(it)
-        })
-        viewModel.recipeLoadErrorLd.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
+            view.listener=this
+            if(it.isEmpty()){
                 txtErrorResep.visibility = View.VISIBLE
-            } else {
-                txtErrorResep.visibility = View.GONE
-            }
-        })
-        viewModel.loadingld.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
-                recViewResep.visibility = View.GONE
                 resepLoad.visibility = View.VISIBLE
-            } else {
-                recViewResep.visibility = View.VISIBLE
+            }else{
+                txtErrorResep.visibility = View.GONE
                 resepLoad.visibility = View.GONE
             }
         })
+//        viewModel.recipeLoadErrorLd.observe(viewLifecycleOwner, Observer {
+//            if(it == true) {
+//                txtErrorResep.visibility = View.VISIBLE
+//            } else {
+//                txtErrorResep.visibility = View.GONE
+//            }
+//        })
+//        viewModel.loadingld.observe(viewLifecycleOwner, Observer {
+//            if(it == true) {
+//                recViewResep.visibility = View.GONE
+//                resepLoad.visibility = View.VISIBLE
+//            } else {
+//                recViewResep.visibility = View.VISIBLE
+//                resepLoad.visibility = View.GONE
+//            }
+//        })
 
     }
 
+    override fun onFABTambahClick(v: View) {
+        val action= RecipesListFragmentDirections.actionRecipesListFragmentToRecipesAddFragment();
+        Navigation.findNavController(v).navigate(action)
+    }
 
 
 }

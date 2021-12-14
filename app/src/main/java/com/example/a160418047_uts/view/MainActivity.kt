@@ -1,5 +1,7 @@
 package com.example.a160418047_uts.view
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
@@ -23,6 +25,15 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(navView, navController)
        // bottomNav.setupWithNavController(navController)
         bottomNav.setupWithNavController(navController)
+        val pref=this?.getSharedPreferences("USER", Context.MODE_PRIVATE);
+        if(pref.getString("uid","")==""){
+            val intent=Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+
+
 
 
     }

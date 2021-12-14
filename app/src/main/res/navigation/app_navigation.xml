@@ -30,12 +30,7 @@
         android:id="@+id/profilDetailFragment"
         android:name="com.example.a160418047_uts.view.Profil.ProfilDetailFragment"
         android:label="detail profil"
-        tools:layout="@layout/fragment_profil_detail">
-        <argument
-            android:name="uname"
-            app:argType="string"
-            app:nullable="true" />
-    </fragment>
+        tools:layout="@layout/fragment_profil_detail"/>
     <fragment
         android:id="@+id/recipesAddFragment"
         android:name="com.example.a160418047_uts.view.Recipes.RecipesAddFragment"
@@ -60,21 +55,8 @@
         android:label="detail resep"
         tools:layout="@layout/fragment_recipes_detail">
         <argument
-            android:name="nama"
-            app:argType="string"
-            app:nullable="true" />
-        <argument
-            android:name="bahan"
-            app:argType="string[]"
-            app:nullable="true" />
-        <argument
-            android:name="cara"
-            app:argType="string[]"
-            app:nullable="true" />
-        <argument
-            android:name="imgurl"
-            app:argType="string"
-            app:nullable="true" />
+            android:name="id"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/itemReward"
