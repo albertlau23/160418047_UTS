@@ -55,7 +55,6 @@ class RecipesListAdapter(val recipesList: ArrayList<Recipe>) :
         "Noodles-Pasta",
         "Soup",
         "Vegetable-Fruit"
-
     )
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
