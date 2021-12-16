@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class User(
     @ColumnInfo(name = "username")
-    val username: String?,
+    var username: String?,
     @ColumnInfo(name = "nama")
     val nama: String?,
     @ColumnInfo(name = "bod")
@@ -17,8 +17,8 @@ data class User(
     @ColumnInfo(name = "imgurl")
     val imgurl: String?,
     @ColumnInfo(name = "password")
-    val password: String?
+    var password: String?
 ) {
     @PrimaryKey(autoGenerate = true)
-    var uuid: Int = 1
+    var uuid: Int = 0
 }

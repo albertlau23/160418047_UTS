@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_recipes_list.*
 class MyRecipesFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private lateinit var viewModel: myRecipesViewModel
-    private val myrecipesAdapter = MyRecipesListAdapter(arrayListOf())
+    private var myrecipesAdapter = MyRecipesListAdapter(arrayListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

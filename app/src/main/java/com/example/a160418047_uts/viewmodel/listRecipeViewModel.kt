@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.room.Room
 import com.example.a160418047_uts.model.Recipe
 import com.example.a160418047_uts.model.RecipeDatabase
+import com.example.a160418047_uts.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -26,10 +27,7 @@ class listRecipeViewModel(application: Application) : AndroidViewModel(applicati
         loadingld.value = true
         recipeLoadErrorLd.value = false
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(),
-                RecipeDatabase::class.java, "Recipedb"
-            ).build()
+            val db = buildDb(getApplication())
 
             recipeLd.value = db.recipeDao().selectAllRecipe()
             print("resep:" + recipeLd)
@@ -39,10 +37,7 @@ class listRecipeViewModel(application: Application) : AndroidViewModel(applicati
 
     fun clearTask(recipe: Recipe) {
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(),
-                RecipeDatabase::class.java, "Recipedb"
-            ).build()
+            val db = buildDb(getApplication())
             db.recipeDao().deleteRecipe(recipe)
 
             recipeLd.value = db.recipeDao().selectAllRecipe()

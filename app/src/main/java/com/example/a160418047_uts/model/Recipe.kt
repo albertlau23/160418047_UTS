@@ -13,6 +13,8 @@ data class Recipe(
     var cara: String?,
     @ColumnInfo(name = "url")
     var url: String?,
+    @ColumnInfo(name="cat")
+    var cat:String,
     @ColumnInfo(name = "uid")
     var uid: Int?
 ) {

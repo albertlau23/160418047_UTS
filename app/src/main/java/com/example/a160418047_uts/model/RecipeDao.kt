@@ -10,6 +10,8 @@ interface RecipeDao {
 
     @Query("SELECT * FROM Recipe")
     suspend fun selectAllRecipe(): List<Recipe>
+    @Query("update Recipe set cat=:cat WHERE id=:id")
+    suspend fun corectCat(cat:String,id: Int)
 
     @Query("SELECT * FROM Recipe WHERE id= :id")
     suspend fun selectRecipe(id: Int): Recipe
@@ -30,6 +32,20 @@ interface UserDao{
     suspend fun selectUser(id: String,pass:String): User
     @Query("SELECT * FROM User WHERE username= :id")
     suspend fun viewUser(id: String): User
+
+
+}
+@Dao
+interface RewardDao{
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(vararg reward: Reward)
+
+    @Query("SELECT * FROM Reward")
+    suspend fun selectAllReward(): List<Reward>
+
+
+    @Query("SELECT * FROM Reward WHERE uuid= :id")
+    suspend fun viewReward(id: String): Reward
 
 
 }

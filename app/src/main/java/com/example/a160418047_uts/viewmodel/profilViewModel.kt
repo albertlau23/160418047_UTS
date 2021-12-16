@@ -8,6 +8,7 @@ import androidx.room.Room
 import com.example.a160418047_uts.model.Recipe
 import com.example.a160418047_uts.model.RecipeDatabase
 import com.example.a160418047_uts.model.User
+import com.example.a160418047_uts.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -23,10 +24,7 @@ class profilViewModel(application: Application) : AndroidViewModel(application),
 
     fun fetch(id: String) {
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(), RecipeDatabase::class.java,
-                "Recipedb"
-            ).build()
+            val db = buildDb(getApplication())
             profilLd.value = db.userDao().viewUser(id)
         }
 

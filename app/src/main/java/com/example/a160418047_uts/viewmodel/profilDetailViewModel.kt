@@ -8,6 +8,7 @@ import androidx.room.Room
 import com.example.a160418047_uts.model.Recipe
 import com.example.a160418047_uts.model.RecipeDatabase
 import com.example.a160418047_uts.model.User
+import com.example.a160418047_uts.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -22,9 +23,7 @@ class profilDetailViewModel(application: Application):AndroidViewModel(applicati
     private val job= Job();
     fun addUser(list:List<User>) {
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(), RecipeDatabase::class.java,
-                "Recipedb").build()
+            val db = buildDb(getApplication())
             db.userDao().insertAll(*list.toTypedArray())
         }
     }
@@ -36,18 +35,15 @@ class profilDetailViewModel(application: Application):AndroidViewModel(applicati
     //val loadingld= MutableLiveData<Boolean>()
     fun fetch(id:String) {
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(), RecipeDatabase::class.java,
-                "Recipedb").build()
+            val db = buildDb(getApplication())
             profilLd.value=db.userDao().viewUser(id)
         }
+
 
     }
     fun login(id:String,pass:String):String {
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(), RecipeDatabase::class.java,
-                "Recipedb").build()
+            val db = buildDb(getApplication())
             profilLd.value=db.userDao().selectUser(id,pass)
         }
         if (profilLd.value?.username!=id){

@@ -71,7 +71,11 @@
         android:id="@+id/rewardDetailFragment"
         android:name="com.example.a160418047_uts.view.Reward.RewardDetailFragment"
         android:label="Reward Info"
-        tools:layout="@layout/fragment_reward_detail" />
+        tools:layout="@layout/fragment_reward_detail" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/login"
         android:name="com.example.a160418047_uts.view.auth.Login"

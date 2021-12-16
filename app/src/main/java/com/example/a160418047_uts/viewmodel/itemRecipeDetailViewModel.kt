@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.room.Room
 import com.example.a160418047_uts.model.Recipe
 import com.example.a160418047_uts.model.RecipeDatabase
+import com.example.a160418047_uts.util.buildDb
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -18,9 +19,7 @@ class itemRecipeDetailViewModel(application: Application):AndroidViewModel(appli
     private val job= Job();
     fun addRecipe(list:List<Recipe>) {
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(), RecipeDatabase::class.java,
-                "Recipedb").build()
+            val db = buildDb(getApplication())
             db.recipeDao().insertAll(*list.toTypedArray())
         }
     }
@@ -32,9 +31,7 @@ class itemRecipeDetailViewModel(application: Application):AndroidViewModel(appli
     //val loadingld= MutableLiveData<Boolean>()
     fun fetch(id:Int) {
         launch {
-            val db = Room.databaseBuilder(
-                getApplication(), RecipeDatabase::class.java,
-                "Recipedb").build()
+            val db =buildDb(getApplication())
             recipeLd.value=db.recipeDao().selectRecipe(id)
         }
     }

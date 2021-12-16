@@ -9,6 +9,9 @@
         <variable
             name="listener"
             type="com.example.a160418047_uts.model.ButtonDetailClickListener" />
+        <variable
+            name="cat"
+            type="String" />
     </data>
 
 
@@ -57,7 +60,8 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginEnd="8dp"
-                    android:text="@{recipes.nama}"
+                    android:text="@{recipes.nama+'\n'+recipes.cat}"
+                    android:textAlignment="center"
                     android:textSize="34sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

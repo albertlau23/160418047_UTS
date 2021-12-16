@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.a160418047_uts.util.MIGRATION_1_2
 
 
-@Database(entities = arrayOf(Recipe::class,User::class), version = 1)
+@Database(entities = arrayOf(Recipe::class,User::class,Reward::class), version = 2)
 abstract class RecipeDatabase : RoomDatabase() {
     abstract fun recipeDao(): RecipeDao
     abstract fun userDao(): UserDao
+    abstract fun rewardDao(): RewardDao
 
     companion object {
         @Volatile
@@ -21,7 +23,7 @@ abstract class RecipeDatabase : RoomDatabase() {
                 context.applicationContext,
                 com.example.a160418047_uts.model.RecipeDatabase::class.java,
                 "Recipedb"
-            ).build()
+            ).addMigrations(MIGRATION_1_2).build()
 
 
         operator fun invoke(context: Context) {

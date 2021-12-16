@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a160418047_uts.R
 import com.example.a160418047_uts.view.Recipes.RecipesListAdapter
 import com.example.a160418047_uts.viewmodel.RewardViewModel
+import kotlinx.android.synthetic.main.fragment_my_recipes.*
 import kotlinx.android.synthetic.main.fragment_recipes_list.*
 import kotlinx.android.synthetic.main.fragment_reward.*
 
@@ -44,22 +45,16 @@ class RewardFragment : Fragment() {
     fun observeViewModel(){
         viewmodel.rewardLd.observe(viewLifecycleOwner, Observer {
             rewardAdapter.upadateReward(it)
-        })
-        viewmodel.recipeLoadErrorLd.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
+            if(it.isEmpty()){
                 txtError.visibility = View.VISIBLE
-            } else {
-                txtError.visibility = View.GONE
-            }
-        })
-        viewmodel.loadingld.observe(viewLifecycleOwner, Observer {
-            if(it == true) {
-                RecViewReward.visibility = View.GONE
                 loadReward.visibility = View.VISIBLE
-            } else {
+            }else{
                 RecViewReward.visibility = View.VISIBLE
+                txtError.visibility = View.GONE
                 loadReward.visibility = View.GONE
             }
+
         })
+
     }
 }
